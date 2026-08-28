@@ -1,30 +1,39 @@
 import os
 import joblib
 import pandas as pd
-import gzip
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+
+BASE_DIR = os.path.dirname(
+    os.path.dirname(
+        os.path.abspath(__file__)
+    )
+)
+
 
 health_model = joblib.load(
     os.path.join(BASE_DIR, "models", "health_model.pkl")
 )
 
+
 health_features = joblib.load(
     os.path.join(BASE_DIR, "models", "health_features.pkl")
 )
 
-with gzip.open(
-    os.path.join(BASE_DIR, "models", "failure_model.pkl.gz"),
-    "rb"
-) as f:
-    failure_model = joblib.load(f)
+
+failure_model = joblib.load(
+    os.path.join(BASE_DIR, "models", "failure_model.pkl")
+)
+
 
 failure_features = joblib.load(
     os.path.join(BASE_DIR, "models", "failure_features.pkl")
 )
 
+
 failure_type_model = joblib.load(
     os.path.join(BASE_DIR, "models", "failure_type_model.pkl")
 )
+
 
 failure_type_features = joblib.load(
     os.path.join(BASE_DIR, "models", "failure_type_features.pkl")
