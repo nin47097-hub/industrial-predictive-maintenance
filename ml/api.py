@@ -31,7 +31,12 @@ def clean_data(data):
 # -----------------------------
 # Get all machines
 # -----------------------------
-
+@app.route("/", methods=["GET"])
+def home():
+    return jsonify({
+        "message": "Industrial Predictive Maintenance API is running",
+        "status": "online"
+    })
 @app.route("/machines", methods=["GET"])
 def get_machines():
 
