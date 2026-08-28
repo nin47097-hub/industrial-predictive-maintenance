@@ -1,6 +1,6 @@
 import joblib
 import pandas as pd
-
+import gzip
 
 health_model = joblib.load(
     "models/health_model.pkl"
@@ -11,9 +11,8 @@ health_features = joblib.load(
 )
 
 
-failure_model = joblib.load(
-    "models/failure_model.pkl"
-)
+with gzip.open("models/failure_model.pkl.gz", "rb") as f:
+    failure_model = joblib.load(f)
 
 failure_features = joblib.load(
     "models/failure_features.pkl"
