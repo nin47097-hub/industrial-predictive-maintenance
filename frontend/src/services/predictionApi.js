@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-    baseURL: "https://industrial-predictive-maintenance-ml.onrender.com"
+    baseURL: "https://industrial-predictive-maintenance-1-jvmj.onrender.com/api"
 });
 
 export const getMachines = async () => {

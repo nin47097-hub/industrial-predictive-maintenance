@@ -1,5 +1,6 @@
 const express = require("express");
 const cors = require("cors");
+
 const predictionsRoutes = require("./Routes/predictionsroutes");
 
 const app = express();
@@ -13,5 +14,5 @@ app.use(express.json());
 app.use("/api", predictionsRoutes);
 
 app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
+    console.log(`Server is running on port ${PORT}`);
 });

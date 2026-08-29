@@ -13,9 +13,7 @@ function FactoryDashboard() {
     const [predictionLoading,setPredictionLoading]= useState(false)
 
 
-    // ==========================================
-    // GET MACHINES + RUN ML PREDICTION
-    // ==========================================
+   
 
     useEffect(() => {
 
@@ -24,7 +22,7 @@ function FactoryDashboard() {
             try {
 
                 const response = await axios.get(
-                    "https://industrial-predictive-maintenance-ml.onrender.com/machines"
+                    "https://industrial-predictive-maintenance-1-jvmj.onrender.com"
                 );
 
                 console.log(
@@ -51,7 +49,7 @@ function FactoryDashboard() {
                                 try {
 
                                     const predictionResponse  = await axios.post(
-                                        "https://industrial-predictive-maintenance-ml.onrender.com/predict",
+                                        "https://industrial-predictive-maintenance-1-jvmj.onrender.com/api/predict",
                                             {
                                                 machine_id:
                                                     machine.machine_id,
@@ -113,7 +111,7 @@ function FactoryDashboard() {
                                         predictionResponse.data
                                     );
 
-                                    const prediction = predictionResponse.data;
+                                    const prediction = predictionResponse.data.data;
                                     let dashboardStatus = prediction.health_status;
                                     if (dashboardStatus ==="Degraded"){
                                         dashboardStatus="At Risk"
@@ -180,10 +178,6 @@ function FactoryDashboard() {
     }, []);
 
 
-    // ==========================================
-    // FILTER MACHINES
-    // ==========================================
-
     const filteredMachines =
         machines.filter((machine) => {
 
@@ -209,9 +203,7 @@ function FactoryDashboard() {
         });
 
 
-    // ==========================================
-    // STATUS COUNTS
-    // ==========================================
+
 
     const healthyCount =
         machines.filter(
@@ -241,9 +233,6 @@ function FactoryDashboard() {
         ).length;
 
 
-    // ==========================================
-    // COLORS
-    // ==========================================
 
     const statusColor = (status) => {
 
@@ -277,9 +266,7 @@ function FactoryDashboard() {
     };
 
 
-    // ==========================================
-    // SELECT MACHINE
-    // ==========================================
+   
 
     const handleMachineClick = async (machine) => {
         setSelectedMachine(machine);
@@ -289,13 +276,13 @@ function FactoryDashboard() {
             setPredictionLoading(true);
 
             const response = await axios.post(
-                "https://industrial-predictive-maintenance-ml.onrender.com/predict",
+                "https://industrial-predictive-maintenance-1-jvmj.onrender.com/api/predict",
                 machine
             );
 
             console.log("ML Prediction:", response.data);
 
-            setPrediction(response.data);
+            setPrediction(response.data.data);
 
         } catch (error) {
             console.error("Prediction failed:", error);
@@ -305,9 +292,6 @@ function FactoryDashboard() {
     };
 
 
-    // ==========================================
-    // UI
-    // ==========================================
 
 
 
@@ -316,11 +300,11 @@ function FactoryDashboard() {
             setPredictionLoading(true);
             setPrediction(null);
             const response = await axios.post(
-                "https://industrial-predictive-maintenance-ml.onrender.com/predict",
+                "https://industrial-predictive-maintenance-1-jvmj.onrender.com/api/predict",
                 machine
             )
             console.log("ML prediction",response.data);
-            setPrediction(response.data);
+            setPrediction(response.data.data);
         }  catch(error){
             console.log("prediction failed",error);
 
@@ -344,9 +328,7 @@ function FactoryDashboard() {
             </p>
 
 
-            {/* ================================= */}
-            {/* FILTERS */}
-            {/* ================================= */}
+           
 
             <section className="filters-section">
 
@@ -432,9 +414,6 @@ function FactoryDashboard() {
             </section>
 
 
-            {/* ================================= */}
-            {/* OVERVIEW */}
-            {/* ================================= */}
 
             <section className="overview-section">
 
@@ -505,9 +484,6 @@ function FactoryDashboard() {
             </section>
 
 
-            {/* ================================= */}
-            {/* MACHINES */}
-            {/* ================================= */}
 
             <section className="machines-section">
 
@@ -762,9 +738,6 @@ function FactoryDashboard() {
             </section>
 
 
-            {/* ================================= */}
-            {/* SELECTED MACHINE */}
-            {/* ================================= */}
 
             {selectedMachine && (
 
@@ -1092,10 +1065,7 @@ function FactoryDashboard() {
             )}
 
 
-            {/* ================================= */}
-            {/* MAINTENANCE ALERTS */}
-            {/* ================================= */}
-
+           
             <section className="maintenance-alerts">
 
                 <h2>
