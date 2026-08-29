@@ -1,15 +1,35 @@
-import axios from "axios"
+import axios from "axios";
 
-const api_url = 'http://localhost:3000/api/predict';
-export const predictmachine = async(machineData)=>{
-    try{
-        const response = await axios.post(api_url,machineData);
+const api = axios.create({
+    baseURL: "https://industrial-predictive-maintenance-ml.onrender.com"
+});
+
+export const getMachines = async () => {
+    try {
+        const response = await api.get("/machines");
         return response.data;
-
-    }catch (error){
-
-        console.error('api_error',error);
+    } catch (error) {
+        console.error("machines_api_error", error);
         throw error;
     }
 };
 
+export const getMachine = async (machineId) => {
+    try {
+        const response = await api.get(`/machines/${machineId}`);
+        return response.data;
+    } catch (error) {
+        console.error("machine_api_error", error);
+        throw error;
+    }
+};
+
+export const predictmachine = async (machineData) => {
+    try {
+        const response = await api.post("/predict", machineData);
+        return response.data;
+    } catch (error) {
+        console.error("prediction_api_error", error);
+        throw error;
+    }
+};

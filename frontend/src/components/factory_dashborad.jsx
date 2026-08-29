@@ -24,7 +24,7 @@ function FactoryDashboard() {
             try {
 
                 const response = await axios.get(
-                    "http://localhost:3000/api/machines"
+                    "https://industrial-predictive-maintenance-ml.onrender.com/machines"
                 );
 
                 console.log(
@@ -50,9 +50,8 @@ function FactoryDashboard() {
 
                                 try {
 
-                                    const predictionResponse =
-                                        await axios.post(
-                                            "http://localhost:3000/api/predict",
+                                    const predictionResponse  = await axios.post(
+                                        "https://industrial-predictive-maintenance-ml.onrender.com/predict",
                                             {
                                                 machine_id:
                                                     machine.machine_id,
@@ -114,7 +113,7 @@ function FactoryDashboard() {
                                         predictionResponse.data
                                     );
 
-                                    const prediction = predictionResponse.data.data;
+                                    const prediction = predictionResponse.data;
                                     let dashboardStatus = prediction.health_status;
                                     if (dashboardStatus ==="Degraded"){
                                         dashboardStatus="At Risk"
@@ -127,9 +126,7 @@ function FactoryDashboard() {
                                         health_status: dashboardStatus
 
                                     };
-
                                 } catch (error) {
-
                                     console.error(
                                         "Prediction failed for",
                                         machine.machine_id,
@@ -291,14 +288,14 @@ function FactoryDashboard() {
         try {
             setPredictionLoading(true);
 
-           const response = await axios.post(
-                "http://localhost:3000/api/predict",
+            const response = await axios.post(
+                "https://industrial-predictive-maintenance-ml.onrender.com/predict",
                 machine
             );
 
             console.log("ML Prediction:", response.data);
 
-            setPrediction(response.data.data);
+            setPrediction(response.data);
 
         } catch (error) {
             console.error("Prediction failed:", error);
@@ -319,12 +316,11 @@ function FactoryDashboard() {
             setPredictionLoading(true);
             setPrediction(null);
             const response = await axios.post(
-                "http://localhost:3000/api/predict",
+                "https://industrial-predictive-maintenance-ml.onrender.com/predict",
                 machine
-
             )
             console.log("ML prediction",response.data);
-            setPrediction(response.data.data);
+            setPrediction(response.data);
         }  catch(error){
             console.log("prediction failed",error);
 

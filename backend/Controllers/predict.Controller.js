@@ -1,7 +1,6 @@
 const axios = require("axios");
-
-const flask_url = "http://127.0.0.1:5000/predict";
-const flask_machine_url = "http://127.0.0.1:5000/machines";
+const flask_url = "https://industrial-predictive-maintenance-ml.onrender.com/predict";
+const flask_machine_url = "https://industrial-predictive-maintenance-ml.onrender.com/machines";
 exports.getMachines = async (req, res) => {
 
     try {
