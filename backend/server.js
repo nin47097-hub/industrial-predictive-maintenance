@@ -1,7 +1,6 @@
 const express = require("express");
 const cors = require("cors");
-
-const predictionsRoutes = require("./routes/predictionsroutes");
+const predictionsRoutes = require("./Routes/predictionsroutes");
 
 const app = express();
 
