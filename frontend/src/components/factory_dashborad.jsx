@@ -22,7 +22,7 @@ function FactoryDashboard() {
             try {
 
                 const response = await axios.get(
-                    "https://industrial-predictive-maintenance-1-jvmj.onrender.com"
+                    "https://industrial-predictive-maintenance-1-jvmj.onrender.com/api/machines"
                 );
 
                 console.log(
@@ -237,16 +237,16 @@ function FactoryDashboard() {
     const statusColor = (status) => {
 
         if (status === "Healthy")
-            return "green";
+            return "#3fb950";
 
         if (status === "Moderate")
-            return "orange";
+            return "#d29922";
 
         if (status === "At Risk")
             return "maroon";
 
         if (status === "Critical")
-            return "red";
+            return "#f85149";
 
         return "gray";
 
